@@ -56,7 +56,7 @@ Create a complex, multi-section layout.
 
 Use CSS properties like transitions and animations.
 
-## Use a framework (e.g., Bootstrap) for responsive design.
+## Use a framework ( Bootstrap) for responsive design.
 
 npm install bootstrap
 3️⃣ views/index.ejs — Responsive form layout with Bootstrap & animations
