@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Advanced Form Validation & API Demo</h1>
+    </header>
+
+    <main>
+      <% if (errors && errors.length) { %>
+      <div class="errors">
+        <ul>
+          <% errors.forEach(err => { %>
+          <li><%= err %></li>
+          <% }) %>
+        </ul>
+      </div>
+      <% } %>
+
+      <!-- Step Navigation -->
+      <nav id="stepNav" class="fade-in">
+        <button type="button" id="toStep1" class="btn">Step 1: Info</button>
+        <button type="button" id="toStep2" class="btn">Step 2: Account</button>
+      </nav>
+
+      <!-- Step 1 -->
+      <form id="step1" class="fade-in" style="display: block">
+        <label>Name:</label>
+        <input type="text" id="name" placeholder="Your name" required />
+
+        <label>Email:</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+
+        <button type="button" id="nextBtn">Next ➡️</button>
+      </form>
+
+      <!-- Step 2 -->
+      <form
+        id="step2"
+        class="fade-in"
+        action="/submit"
+        method="POST"
+        style="display: none"
+      >
+        <input type="hidden" name="name" id="hiddenName" />
+        <input type="hidden" name="email" id="hiddenEmail" />
+
+        <label>Password:</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Create password"
+          required
+        />
+        <div id="strengthMsg"></div>
+
+        <label>Confirm Password:</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          required
+        />
+        <div id="confirmMsg"></div>
+
+        <label>Message:</label>
+        <textarea
+          name="message"
+          id="message"
+          rows="3"
+          placeholder="Say hello..."
+        ></textarea>
+
+        <button type="submit">Submit ✅</button>
+      </form>
+
+      <!-- Dynamic Submissions Section -->
+      <section id="submissionsSection" class="fade-in">
+        <h2>🧾 API Submissions</h2>
+        <div id="submissionsList">Loading...</div>
+      </section>
+    </main>
+
+    <script>
+      // === Step Navigation ===
+      const step1 = document.getElementById("step1");
+      const step2 = document.getElementById("step2");
+      const nextBtn = document.getElementById("nextBtn");
+      const toStep1 = document.getElementById("toStep1");
+      const toStep2 = document.getElementById("toStep2");
+
+      nextBtn.addEventListener("click", () => {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        if (!name || !email) return alert("Please fill in all fields!");
+        document.getElementById("hiddenName").value = name;
+        document.getElementById("hiddenEmail").value = email;
+        step1.style.display = "none";
+        step2.style.display = "block";
+      });
+
+      toStep1.addEventListener("click", () => {
+        step2.style.display = "none";
+        step1.style.display = "block";
+      });
+      toStep2.addEventListener("click", () => {
+        step1.style.display = "none";
+        step2.style.display = "block";
+      });
+
+      // === Password Validation ===
+      const passwordInput = document.getElementById("password");
+      const strengthMsg = document.getElementById("strengthMsg");
+      const confirmInput = document.getElementById("confirmPassword");
+      const confirmMsg = document.getElementById("confirmMsg");
+
+      passwordInput.addEventListener("input", () => {
+        const val = passwordInput.value;
+        const hasUpper = /[A-Z]/.test(val);
+        const hasLower = /[a-z]/.test(val);
+        const hasNum = /\d/.test(val);
+        const hasSpecial = /[^A-Za-z0-9]/.test(val);
+        const length = val.length >= 8;
+        const strength =
+          hasUpper + hasLower + hasNum + hasSpecial + (length ? 1 : 0);
+        const messages = [
+          "Too weak 😢",
+          "Weak 😐",
+          "Medium 🙂",
+          "Strong 💪",
+          "Very Strong 🚀",
+        ];
+        strengthMsg.textContent =
+          "Password strength: " + messages[strength - 1];
+        strengthMsg.style.color =
+          strength < 3 ? "red" : strength === 3 ? "orange" : "green";
+      });
+
+      confirmInput.addEventListener("input", () => {
+        confirmMsg.textContent =
+          confirmInput.value === passwordInput.value
+            ? "✅ Passwords match"
+            : "❌ Passwords do not match";
+        confirmMsg.style.color =
+          confirmInput.value === passwordInput.value ? "green" : "red";
+      });
+
+      // === API Integration ===
+      async function loadSubmissions() {
+        const res = await fetch("/api/submissions");
+        const data = await res.json();
+        const list = document.getElementById("submissionsList");
+        if (data.length === 0) {
+          list.innerHTML = "<p>No submissions yet.</p>";
+          return;
+        }
+        list.innerHTML = data
+          .map(
+            (item) => `
+            <div class="submission-card">
+              <strong>${item.name}</strong> — <em>${item.email}</em><br/>
+              <p>${item.message}</p>
+              <small>${new Date(item.createdAt).toLocaleString()}</small>
+              <button onclick="deleteSubmission(${
+                item.id
+              })" class="btn small-btn danger">🗑 Delete</button>
+            </div>
+          `
+          )
+          .join("");
+      }
+
+      async function deleteSubmission(id) {
+        if (!confirm("Delete this submission?")) return;
+        await fetch("/api/submissions/" + id, { method: "DELETE" });
+        loadSubmissions();
+      }
+
+      // Load submissions when page starts
+      loadSubmissions();
+    </script>
+    <script src="/script.js"></script>
+  </body>
+</html>
