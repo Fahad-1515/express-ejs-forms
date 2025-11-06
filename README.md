@@ -38,7 +38,7 @@ Create a complex, multi-section layout.
 
 Use CSS properties like transitions and animations.
 
-## Use a framework (e.g., Bootstrap) for responsive design.
+## Use a framework ( Bootstrap) for responsive design.
 
 1️⃣ app.js – Add server-side validation + temporary storage
 2️⃣ views/index.ejs – Inline styles + client-side validation
