@@ -10,7 +10,7 @@ Set up a Node.js server using Express.
 
 Create endpoints to handle form submissions.
 
-## Use server-side rendering (e.g., EJS) to dynamically generate HTML.
+## Use server-side rendering ( EJS) to dynamically generate HTML.
 
 Simple EJS (No Layout Engine)
 1️⃣ Install dependencies  
