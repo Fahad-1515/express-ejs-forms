@@ -107,5 +107,5 @@ npm install mongoose bcrypt jsonwebtoken cookie-parser
 
 ---
 
-Step 1 – Install database & auth libs
+  Install database & auth libs
 npm install mongoose bcrypt jsonwebtoken cookie-parser dotenv
