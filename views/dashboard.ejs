@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Welcome, <%= user.name %>! 👋</h1>
+        <p>Your Form Submission Dashboard</p>
+      </header>
+
+      <nav class="nav-links">
+        <a href="/" class="btn">Submit New Form</a>
+        <a href="/auth/logout" class="btn btn-secondary">Logout</a>
+      </nav>
+
+      <main>
+        <div class="form-card">
+          <h2>Dashboard Overview</h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              gap: 1rem;
+              margin-bottom: 2rem;
+            "
+          >
+            <div
+              style="
+                background: #e3f2fd;
+                padding: 1rem;
+                border-radius: 8px;
+                text-align: center;
+              "
+            >
+              <h3 style="margin: 0; color: #1976d2"><%= recentCount %></h3>
+              <p style="margin: 0; color: #666">Recent Submissions</p>
+            </div>
+            <div
+              style="
+                background: #e8f5e9;
+                padding: 1rem;
+                border-radius: 8px;
+                text-align: center;
+              "
+            >
+              <h3 style="margin: 0; color: #388e3c"><%= user.role %></h3>
+              <p style="margin: 0; color: #666">Your Role</p>
+            </div>
+          </div>
+
+          <h3>Your Recent Submissions</h3>
+          <% if (submissions.length === 0) { %>
+          <p>
+            No submissions yet. <a href="/">Create your first submission!</a>
+          </p>
+          <% } else { %>
+          <div id="submissionsList">
+            <% submissions.forEach(submission => { %>
+            <div class="submission-card">
+              <strong><%= submission.name %></strong> —
+              <em><%= submission.email %></em>
+              <p><%= submission.message %></p>
+              <small
+                >Submitted on <%= new
+                Date(submission.createdAt).toLocaleDateString() %></small
+              >
+              <div style="margin-top: 0.5rem">
+                <span
+                  class="status-badge"
+                  style="background: 
+                                        <%= submission.status === 'approved' ? '#4caf50' : 
+                                           submission.status === 'rejected' ? '#f44336' : 
+                                           submission.status === 'reviewed' ? '#ff9800' : '#9e9e9e' %>; 
+                                        color: white; padding: 0.25rem 0.5rem; border-radius: 12px; font-size: 0.8rem;"
+                >
+                  <%= submission.status %>
+                </span>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+          <% } %>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
