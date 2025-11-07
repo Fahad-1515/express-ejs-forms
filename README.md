@@ -43,6 +43,7 @@ Use CSS properties like transitions and animations.
 1️⃣ app.js – Add server-side validation + temporary storage
 2️⃣ views/index.ejs – Inline styles + client-side validation
 3️⃣ views/result.ejs – Show submitted data and stored records
+<img width="700" height="583" alt="Screenshot 2025-11-06 144526" src="https://github.com/user-attachments/assets/5f2105db-b28f-43f1-9008-e9ac26d31a3b" />
 
 ---
 
@@ -62,6 +63,7 @@ npm install bootstrap
 3️⃣ views/index.ejs — Responsive form layout with Bootstrap & animations
 4️⃣ views/result.ejs — Stylish results page
 5️⃣ public/styles.css — Animations, transitions, and responsiveness
+<img width="1920" height="791" alt="Screenshot 2025-11-06 145141" src="https://github.com/user-attachments/assets/5c0c1e12-3513-4fc0-bd3c-0838c17d2042" />
 
 ---
 
@@ -84,6 +86,7 @@ Update the DOM dynamically based on user input.
 ⚙️ 2. Updated app.js with API Routes
 🖥️ 3. Updated index.ejs
 Here’s the full content for your script.js file (includes validation, routing, and API fetching):
+<img width="727" height="723" alt="Screenshot 2025-11-06 165754" src="https://github.com/user-attachments/assets/5fd449f1-ce0a-4263-b831-a7cedde2fff4" />
 
 ---
 
@@ -100,6 +103,7 @@ Secure your API endpoints with authorization checks.
 npm install mongoose bcrypt jsonwebtoken cookie-parser
 🗄️ Step 2: Connect MongoDB
 👤 Step 3: Authentication Routes (Register + Login)
+<img width="1151" height="876" alt="Screenshot 2025-11-07 212431" src="https://github.com/user-attachments/assets/5e29f7ee-12c2-4009-9e3e-cd76e1793893" />
 
 ---
 
