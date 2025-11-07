@@ -10,7 +10,7 @@ Set up a Node.js server using Express.
 
 Create endpoints to handle form submissions.
 
-## Use server-side rendering (e.g., EJS) to dynamically generate HTML.
+## Use server-side rendering ( EJS) to dynamically generate HTML.
 
 Simple EJS (No Layout Engine)
 1️⃣ Install dependencies  
@@ -38,7 +38,7 @@ Create a complex, multi-section layout.
 
 Use CSS properties like transitions and animations.
 
-## Use a framework (e.g., Bootstrap) for responsive design.
+## Use a framework ( Bootstrap) for responsive design.
 
 1️⃣ app.js – Add server-side validation + temporary storage
 2️⃣ views/index.ejs – Inline styles + client-side validation
@@ -56,7 +56,7 @@ Create a complex, multi-section layout.
 
 Use CSS properties like transitions and animations.
 
-## Use a framework (e.g., Bootstrap) for responsive design.
+## Use a framework ( Bootstrap) for responsive design.
 
 npm install bootstrap
 3️⃣ views/index.ejs — Responsive form layout with Bootstrap & animations
