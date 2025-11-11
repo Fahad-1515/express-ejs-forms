@@ -1,3 +1,18 @@
+# 🧠 Tech Stack:
+
+Node.js | Express.js | EJS | MongoDB | Mongoose | Bootstrap | CSS | JavaScript | bcrypt | JWT | dotenv
+
+# 🌐 Features:
+
+* Dynamic form rendering and validation
+
+* Responsive multi-section layout
+
+* Secure login and registration system
+
+* API-based data fetching and client-side routing
+  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🧩 Level 1: Beginner
 Task 1 – HTML Structure and Basic Server Interaction
 
